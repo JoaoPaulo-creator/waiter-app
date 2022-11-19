@@ -1,20 +1,29 @@
+import { useFonts } from 'expo-font'
+import { Main } from './src/Main';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+
+
+// realizando esses dois imports para que a formação da moeda seja feita no android
+// sem eles, a formatação do jeito que está será realizada somente no IOS, retornando um erron o android
+import 'intl'
+import 'intl/locale-data/jsonp/pt-BR'
 
 export default function App() {
+  const [ isFontsLoaded ] = useFonts({
+    //'GeneralSans-400': require('./assets/fonts/GeneralSans-Regular.otf'),
+    //'GeneralSans-600':  require('./src/assets/fonts/GeneralSans-Semibold.otf'),
+    //'GeneralSans-700': require('./src/assets/fonts/GeneralSans-Bold.otf')
+  })
+
+  if(!isFontsLoaded){
+    return null
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <StatusBar style='dark'/>
+      <Main />      
+    </>
+
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
