@@ -4,13 +4,13 @@ import { Container } from './styles'
 interface ButtonProps{
     children: string
     onPress: () => void
-    disable?: boolean
+    disabled?: boolean
 }
 
 
-export function Button({ children, onPress, disable }: ButtonProps){
+export function Button({ children, onPress, disabled }: ButtonProps){
     return (
-        <Container onPress={onPress} disabled={disable}>
+        <Container onPress={onPress} disabled={disabled}>
             <Text weight='600' color='#fff'>
                 {children}
             </Text>
