@@ -9,7 +9,7 @@ import { Header } from "../components/Header";
 import { Categories } from "../components/Categories";
 import { Menu } from "../components/Menu";
 import { Button } from "../components/Button";
-import { TableModal } from "../components/Table";
+import { TableModal } from "../components/TableModal";
 import { useState } from "react";
 
 
@@ -20,12 +20,22 @@ export function Main(){
     
     function handleSaveTable(table: string){
         setSelectedTale(table)
+        setIsTableModalVisible(false)
     }
+
+
+    function handleCancelOrder(){
+        setSelectedTale('')
+    }
+
 
     return (
         <>
             <Container>
-                <Header />
+                <Header 
+                selectedTable={selectedTable}
+                onCancelOrder={handleCancelOrder}
+                />
 
                 <CategoriesContainer>
                     <Categories />
