@@ -72,13 +72,13 @@ export function Main(){
 
     function handleDecrementCartItem(product: Product) {
         setCartItems((prevState) => {
-            
+
             const itemIndex = prevState.findIndex(cartItem => cartItem.product._id === product._id)
             const item = prevState[itemIndex]
             const newCartItems = [...prevState]
 
             if(item.quantity === 1) {
-                
+
                 newCartItems.splice(itemIndex, 1)
 
                 return newCartItems
@@ -98,7 +98,7 @@ export function Main(){
     return (
         <>
             <Container>
-                <Header 
+                <Header
                 selectedTable={selectedTable}
                 onCancelOrder={handleResetOrder}
                 />
@@ -107,7 +107,7 @@ export function Main(){
                     <CenteredContainer>
                         <ActivityIndicator color="#D73035" size='large'/>
                     </CenteredContainer>
-                ): (
+                ) : (
                     <>
                         <CategoriesContainer>
                             <Categories />
@@ -124,7 +124,7 @@ export function Main(){
                                 <Text color="#666" style={{ marginTop: 24 }}>Nenhum produto foi encontrado</Text>
                             </CenteredContainer>
                         )}
-                    
+
                     </>
 
                 )}
@@ -135,7 +135,7 @@ export function Main(){
                 <FooterContainer>
 
                     {!selectedTable && (
-                        <Button 
+                        <Button
                             onPress={() => setIsTableModalVisible(true)}
                             disabled={isLoading}
                         >
@@ -156,7 +156,7 @@ export function Main(){
                 </FooterContainer>
             </Footer>
 
-            <TableModal 
+            <TableModal
                 visible={isTableModalVisible}
                 onClose={() => setIsTableModalVisible(false)}
                 onSave={handleSaveTable}

@@ -8,12 +8,14 @@ const isAndroid = Platform.OS === 'android'
  * sem que um determinado componente fique escondido no notch da tela do celular. Porém o  SafeAreaView funciona apenas para o IOS
 */
 
+/**
+Usando operador ternário para setar a distância padrão para a status bar do android,
+quando for IOS, a distância para a statusbar será 0, para android, vai variar de dispositivo para dispositivo
+*/
+
+
 export const Container = styled.SafeAreaView`
-    /**
-    Usando operador ternário para setar a distância padrão para a status bar do android,
-    quando for IOS, a distância para a statusbar será 0, para android, vai variar de dispositivo para dispositivo
-    */
-    margin-top: ${isAndroid ? `${StatusBar.currentHeight}.px`: 0};
+    margin-top: ${isAndroid ? `${StatusBar.currentHeight}.px`: '0'};
     flex: 1;
     background: #fafafa;
 `
@@ -30,7 +32,7 @@ export const MenuContainer = styled.View`
 
 
 export const Footer = styled.View`
-    min-height: 10px;
+    min-height: 110px;
     background: #fff;
     padding: 16px 24px;
 `
