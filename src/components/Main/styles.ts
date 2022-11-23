@@ -15,28 +15,26 @@ quando for IOS, a distância para a statusbar será 0, para android, vai variar 
 
 
 export const Container = styled.SafeAreaView`
-    margin-top: ${isAndroid ? `${StatusBar.currentHeight}.px`: '0'};
+    margin-top: ${isAndroid ? `${StatusBar.currentHeight}.px` : '0'};
     flex: 1;
     background: #fafafa;
 `
 
 export const CategoriesContainer = styled.View`
-    height: 73px;
-    margin-top: 34px;
+    height: 66px;
+    margin-top: 12px;
 `
 
 export const MenuContainer = styled.View`
-    height: 50px;
+    /* height: 50px; */
     flex: 1;
 `
 
 
 export const Footer = styled.View`
     min-height: 110px;
-    background: #fff;
-    padding: 16px 24px;
+    padding: ${isAndroid? '24px' : '16px'} 14px;
 `
-
 
 export const FooterContainer = styled.SafeAreaView``
 

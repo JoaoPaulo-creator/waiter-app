@@ -1,18 +1,25 @@
 import { FlatList } from 'react-native'
 
-import { categories } from '../mocks/categories'
-import { Category, Icon } from './styles'
+import { categories } from '../../mocks/categories'
+import { CategoryContainer, Icon } from './styles'
 import { Text } from '../Text'
 import { useState } from 'react'
 
+import { ICategory } from '../../interfaces/interface'
+
+interface CategoriesProps {
+    categories: ICategory[]
+    onSelectCategory: (categoryId: string) => Promise<void>
+}
 
 
-export function Categories() {
+export function Categories({ categories, onSelectCategory }: CategoriesProps) {
 
     const [selectedCategory, setSelectedCategory] = useState('') // estado dos ícones de categoria
 
     function handleSelectCategory(categoryId: string){
         const category = selectedCategory === categoryId ? '' : categoryId
+        onSelectCategory(category)
         setSelectedCategory(category)
     }
 
@@ -23,18 +30,18 @@ export function Categories() {
         // usando flatlist para iterar meu category e rendereizar os elementos na tela
 
         <FlatList
+        data={categories}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
-        data={categories}
         contentContainerStyle={{ paddingRight: 24 }}
-        keyExtractor={category =>  category._id}
+        keyExtractor={(category) =>  category._id}
         renderItem={({ item: category }) => {
 
             const isSelected = selectedCategory === category._id
 
             return(
 
-                <Category onPress={() => handleSelectCategory(category._id)}>
+                <CategoryContainer onPress={() => handleSelectCategory(category._id)}>
 
                     <Icon>
                         <Text opacity={isSelected ? 1 : 0.5}>
@@ -46,13 +53,10 @@ export function Categories() {
                         {category.name}
                     </Text>
 
-                </Category>
+                </CategoryContainer>
 
             )
         }}
-        >
-
-        </FlatList>
-
+        />
     )
 }
